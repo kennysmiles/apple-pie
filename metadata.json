@@ -1,0 +1,6 @@
+{
+  "name": "Apple Pie",
+  "description": "Create and share interactive, animated birthday experiences and premium digital birthday cards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

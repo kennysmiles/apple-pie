@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF3366"/>
+      <stop offset="50%" stop-color="#FF5E62"/>
+      <stop offset="100%" stop-color="#FF9966"/>
+    </linearGradient>
+    <linearGradient id="crustGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE4B5"/>
+      <stop offset="100%" stop-color="#F5B041"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Rounded Base Badge -->
+  <rect width="64" height="64" rx="16" fill="url(#bgGrad)"/>
+  
+  <!-- Gloss Overlay -->
+  <path d="M0 16C0 7.16344 7.16344 0 16 0H48C56.8366 0 64 7.16344 64 16V28C64 28 48 34 32 34C16 34 0 28 0 28V16Z" fill="white" fill-opacity="0.15"/>
+  
+  <!-- Pie Slice / Birthday Cake Elements -->
+  <g filter="url(#shadow)">
+    <!-- Plate / Dish Base -->
+    <ellipse cx="32" cy="48" rx="22" ry="4" fill="#FFFFFF" fill-opacity="0.3"/>
+    
+    <!-- Pie Slice Body -->
+    <path d="M32 20L48 44C44 47 20 47 16 44L32 20Z" fill="url(#crustGrad)" stroke="#B9770E" stroke-width="1.5" stroke-linejoin="round"/>
+    
+    <!-- Pie Filling Layer -->
+    <path d="M16 44C24 48 40 48 48 44V41C40 45 24 45 16 41V44Z" fill="#C0392B"/>
+    
+    <!-- Lattice Crust Details -->
+    <path d="M26 31L38 41M38 31L26 41M32 24L42 34M32 24L22 34" stroke="#D35400" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+    
+    <!-- Golden Crust Edge -->
+    <path d="M15 41C15 41 18 39 21 41C24 43 27 41 30 41C33 41 36 43 39 41C42 39 45 41 49 41" stroke="#F39C12" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Festive Birthday Candle -->
+    <rect x="30.5" y="12" width="3" height="9" rx="1.5" fill="#FFFFFF"/>
+    <path d="M31 14L33 15M31 17L33 18" stroke="#FF3366" stroke-width="0.8"/>
+    
+    <!-- Candle Flame -->
+    <path d="M32 6C32 6 34.5 9 34 11C33.5 12.5 30.5 12.5 30 11C29.5 9 32 6 32 6Z" fill="#F1C40F"/>
+    <circle cx="32" cy="10" r="1" fill="#E74C3C"/>
+  </g>
+  
+  <!-- Sparkles -->
+  <path d="M12 16L13.5 12L15 16L19 17.5L15 19L13.5 23L12 19L8 17.5L12 16Z" fill="#FFFFFF" opacity="0.9"/>
+  <path d="M50 14L51 11L52 14L55 15L52 16L51 19L50 16L47 15L50 14Z" fill="#FFFFFF" opacity="0.8"/>
+</svg>
