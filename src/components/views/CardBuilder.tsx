@@ -43,6 +43,8 @@ interface CardBuilderProps {
   setPersonalMessage: (val: string) => void;
   messageTone: string;
   setMessageTone: (val: string) => void;
+  senderName: string;
+  setSenderName: (val: string) => void;
   promptDetails: string;
   setPromptDetails: (val: string) => void;
   geminiPoem: string;
@@ -88,6 +90,8 @@ export const CardBuilder: React.FC<CardBuilderProps> = ({
   selectedContainer,
   setSelectedContainer,
   personalMessage,
+  senderName,
+  setSenderName,
   setPersonalMessage,
   messageTone,
   setMessageTone,
@@ -447,7 +451,7 @@ export const CardBuilder: React.FC<CardBuilderProps> = ({
                               : (theme.isDark ? 'bg-white/5 border-white/5 text-white/60 hover:bg-white/10' : 'bg-white/50 border-white/40 text-slate-700 hover:bg-white/80')
                           }`}
                         >
-                          {cName === 'box' && '🎁 Box'}
+                          {cName === 'giftbox' && '🎁 Box'}
                           {cName === 'envelope' && '✉️ Seal'}
                           {cName === 'bubble' && '🧼 Bubble'}
                         </button>
@@ -699,7 +703,7 @@ export const CardBuilder: React.FC<CardBuilderProps> = ({
               <div className="w-full max-w-[120px] mx-auto h-20 mb-3 pointer-events-none select-none flex items-center justify-center">
                 <LottiePlayer
                   src="https://lottie.host/fa0314cf-81c8-4720-be1a-da043cb7ba98/zlyOof516k.json"
-                  speed="1"
+                  speed={1}
                   autoplay={true}
                   loop={true}
                   style={{ width: '100%', height: '100%' }}
@@ -782,7 +786,7 @@ export const CardBuilder: React.FC<CardBuilderProps> = ({
                 {recipientName || 'Name'}
               </h4>
 
-              {selectedContainer === 'box' && (
+              {selectedContainer === 'giftbox' && (
                 <div className="w-24 h-24 mx-auto animate-bounce flex items-center justify-center">
                   <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-xl">
                     <rect x="20" y="35" width="60" height="50" rx="6" fill="#f43f5e" />
@@ -815,6 +819,7 @@ export const CardBuilder: React.FC<CardBuilderProps> = ({
                     recipient: recipientName,
                     relation: relationship,
                     tone: messageTone,
+                    sender: senderName,
                     theme: selectedTheme,
                     container: selectedContainer,
                     message: personalMessage,

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
   Volume2, VolumeX, RefreshCw, Wand2, ArrowLeft, ArrowRight, Sparkles, Heart, Gift
 } from 'lucide-react';
-import { CardConfig, ThemeStyle } from '../../types';
+import { CardConfig, ThemeStyle, ThemeKey } from '../../types';
 import { THEME_STYLES } from '../../constants/themes';
 import { LottiePlayer } from '../LottiePlayer';
 import { TypewriterText } from '../TypewriterText';
@@ -46,7 +46,7 @@ interface CardReceiverViewProps {
   setCurrentSlideIndex: React.Dispatch<React.SetStateAction<number>>;
   slideshowAutoNext: boolean;
   setSlideshowAutoNext: React.Dispatch<React.SetStateAction<boolean>>;
-  features: { candle: boolean; poem: boolean; music: boolean; confetti: boolean };
+  features: CardConfig['features'];
   spawnBalloons?: () => void;
   onBackToStudio?: () => void;
 }
@@ -80,7 +80,8 @@ export const CardReceiverView: React.FC<CardReceiverViewProps> = ({
   spawnBalloons,
   onBackToStudio,
 }) => {
-  const cardThemeKey = activeCard?.theme || selectedTheme || 'midnight';
+  const cardThemeKey: ThemeKey =
+  (activeCard?.theme || selectedTheme || 'midnight') as ThemeKey;
   const activeCardTheme: ThemeStyle = THEME_STYLES[cardThemeKey] || THEME_STYLES.midnight;
 
   return (
@@ -146,7 +147,7 @@ export const CardReceiverView: React.FC<CardReceiverViewProps> = ({
                   <div className={`absolute w-40 h-40 rounded-full ${activeCardTheme.isDark ? 'bg-amber-400/20' : 'bg-pink-400/20'} blur-xl opacity-60 animate-pulse`}></div>
                   <LottiePlayer
                     src="https://lottie.host/be0edda1-4aa7-4edb-8f3b-ecae7d5fa25d/i2v9pG74eA.json"
-                    speed="1"
+                    speed={1}
                     loop={true}
                     autoplay={true}
                     style={{ width: '100%', height: '100%' }}
@@ -196,7 +197,7 @@ export const CardReceiverView: React.FC<CardReceiverViewProps> = ({
                   <div className={`absolute w-32 h-32 rounded-full ${activeCardTheme.isDark ? 'bg-pink-400/10' : 'bg-purple-400/15'} blur-xl opacity-40 animate-pulse`}></div>
                   <LottiePlayer
                     src="https://lottie.host/195b0586-cfdf-47ec-b097-f58c70a9fa93/E7K4g5bO3z.json"
-                    speed="1"
+                    speed={1.0}
                     loop={true}
                     autoplay={true}
                     style={{ width: '100%', height: '100%' }}
@@ -329,7 +330,7 @@ export const CardReceiverView: React.FC<CardReceiverViewProps> = ({
                       <div className="w-full max-w-[180px] h-36 mx-auto mt-6 pointer-events-none select-none flex items-center justify-center">
                         <LottiePlayer
                           src="https://lottie.host/48e2b1b9-35d4-4013-a3ed-7ee05b59d87c/G5FdcBaKGi.json"
-                          speed="1"
+                          speed={1.0}
                           loop={true}
                           autoplay={true}
                           style={{ width: '100%', height: '100%' }}

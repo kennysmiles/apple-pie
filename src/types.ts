@@ -20,9 +20,10 @@ export interface CardConfig {
   recipient: string;
   relation: string;
   tone: string;
-  theme: 'midnight' | 'gold' | 'pastel' | 'sunset';
-  container: 'box' | 'envelope' | 'bubble';
+  theme: ThemeKey;
+  container: 'giftbox' | 'envelope' | 'bubble';
   message: string;
+  sender?: string;
   poem: string;
   stickers: Sticker[];
   features: {
@@ -30,6 +31,7 @@ export interface CardConfig {
     confetti: boolean;
     balloons: boolean;
     music: boolean;
+    poem: boolean;
     musicTheme: 'birthday' | 'lofi' | 'sparkle' | 'zen';
   };
   recipientPic?: string;

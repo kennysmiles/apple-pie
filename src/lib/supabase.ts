@@ -122,7 +122,7 @@ export async function saveCardToSupabase(card: { id: string; name: string; url: 
 /**
  * Fetches all saved cards from Supabase cloud under the current logged-in user.
  */
-export async function fetchCardsFromSupabase(): Promise<Array<{ id: string; name: string; url: string; recipient: string }> | null> {
+export async function fetchCardsFromSupabase(): Promise<Array<{ id: string; name: string; url: string; recipient: string; created_at:number; }> | null> {
   if (!supabase) return null;
 
   try {
@@ -142,7 +142,7 @@ export async function fetchCardsFromSupabase(): Promise<Array<{ id: string; name
       .order('created_at', { ascending: false });
 
     if (error) return null;
-    return data as Array<{ id: string; name: string; url: string; recipient: string; created_at?: string }>;
+    return data as Array<{ id: string; name: string; url: string; recipient: string; created_at: number }>;
   } catch (err) {
     console.warn('Failed to fetch cards from cloud:', err);
     return null;

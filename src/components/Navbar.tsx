@@ -388,7 +388,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {!isSupabaseConfigured() ? (
               <button
                 onClick={() => {
-                  onOpenSetupModal();
+                  onOpenSetupModal?.();
                   setIsMobileMenuOpen(false);
                 }}
                 className="w-full py-3 px-4 text-xs font-bold border border-dashed rounded-xl transition flex items-center justify-center gap-2 border-amber-500/40 text-amber-500 bg-amber-500/5 cursor-pointer"

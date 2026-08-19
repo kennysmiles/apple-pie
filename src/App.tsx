@@ -42,7 +42,8 @@ const DEFAULT_CONFIG: CardConfig = {
   relation: 'bestie',
   tone: 'heartfelt',
   theme: 'pastel',
-  container: 'box',
+  sender: '',
+  container: 'giftbox',
   message: "Wishing you a birthday that's as spectacular, radiant, and wonderful as you are! May this year bring you endless laughter, joy, and magical memories.",
   poem: "",
   stickers: [
@@ -52,6 +53,7 @@ const DEFAULT_CONFIG: CardConfig = {
   ],
   features: {
     candle: true,
+    poem: true,
     confetti: true,
     balloons: true,
     music: true,
@@ -71,10 +73,11 @@ export default function App() {
   const theme = THEME_STYLES[selectedTheme] || THEME_STYLES.pastel;
   const [activeTab, setActiveTab] = useState<'card' | 'wishlist' | 'history' | 'profile'>('wishlist');
 
+
   // Authentication & Supabase User State
   const [supabaseUser, setSupabaseUser] = useState<any>(null);
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+  const [authMode, setAuthMode] = useState<'login' | 'signup' | 'forgot'>('login');
   const [authEmail, setAuthEmail] = useState('');
   const [authPassword, setAuthPassword] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
@@ -184,9 +187,10 @@ export default function App() {
   // Card Builder State
   const [builderStep, setBuilderStep] = useState(1);
   const [recipientName, setRecipientName] = useState(DEFAULT_CONFIG.recipient);
+  const [senderName, setSenderName] = useState(DEFAULT_CONFIG.sender);
   const [relationship, setRelationship] = useState(DEFAULT_CONFIG.relation);
   const [messageTone, setMessageTone] = useState(DEFAULT_CONFIG.tone);
-  const [selectedContainer, setSelectedContainer] = useState<CardConfig['container']>('box');
+  const [selectedContainer, setSelectedContainer] = useState<CardConfig['container']>('giftbox');
   const [personalMessage, setPersonalMessage] = useState(DEFAULT_CONFIG.message);
   const [promptDetails, setPromptDetails] = useState('');
   const [geminiPoem, setGeminiPoem] = useState('');
@@ -201,7 +205,7 @@ export default function App() {
   // Share & Card Link States
   const [shareLink, setShareLink] = useState('');
   const [isCopied, setIsCopied] = useState(false);
-  const [savedCards, setSavedCards] = useState<Array<{ id: string; recipient: string; url: string; created_at: string }>>([]);
+  const [savedCards, setSavedCards] = useState<Array<{ name: string; id: string; recipient: string; url: string; created_at: number }>>([]);
   const [copiedHistoryCardId, setCopiedHistoryCardId] = useState<string | null>(null);
 
   // Card Receiver Experience State
@@ -769,10 +773,11 @@ export default function App() {
 
     // Save to card history
     const newSaved = [{
+      name: senderName || 'Sender',
       id: Date.now().toString(),
       recipient: recipientName || 'Friend',
       url,
-      created_at: new Date().toISOString()
+      created_at: Date.now()
     }, ...savedCards];
 
     setSavedCards(newSaved);
@@ -988,6 +993,8 @@ export default function App() {
             builderStep={builderStep}
             setBuilderStep={setBuilderStep}
             recipientName={recipientName}
+            senderName={senderName || ''}
+            setSenderName={setSenderName}
             setRecipientName={setRecipientName}
             relationship={relationship}
             setRelationship={setRelationship}
