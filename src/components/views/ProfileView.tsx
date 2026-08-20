@@ -115,7 +115,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
           <div className="shrink-0 flex items-center gap-2">
             {supabaseUser ? (
               <span className="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold inline-flex items-center gap-1.5 shadow-sm">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Cloud Synced
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Logged in
               </span>
             ) : (
               <button
@@ -123,7 +123,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
                 onClick={onOpenAuthModal}
                 className="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition shadow-md flex items-center gap-1.5 cursor-pointer"
               >
-                <Cloud className="w-3.5 h-3.5" /> Enable Cloud Sync
+                <Cloud className="w-3.5 h-3.5" /> Login
               </button>
             )}
           </div>

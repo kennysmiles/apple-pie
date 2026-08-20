@@ -210,10 +210,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Supabase Cloud Auth Button */}
         {!isSupabaseConfigured() ? (
           <button
-            onClick={onOpenSetupModal}
+            onClick={handleAuth}
             className="text-[11px] font-bold p-2 px-3 border border-dashed rounded-xl transition flex items-center gap-1.5 border-amber-500/40 text-amber-500 hover:bg-amber-500/5 bg-transparent cursor-pointer"
           >
-            <Cloud className="w-3.5 h-3.5" /> Enable Cloud Storage
+            Sign Up
           </button>
         ) : supabaseUser ? (
           <button
@@ -227,7 +227,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={handleAuth}
             className="text-[11px] font-bold p-2 px-3.5 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white rounded-xl shadow-sm transition flex items-center gap-1.5 cursor-pointer"
           >
-            <Cloud className="w-3.5 h-3.5" /> Cloud Login
+          Login
           </button>
         )}
       </div>
@@ -388,12 +388,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             {!isSupabaseConfigured() ? (
               <button
                 onClick={() => {
-                  onOpenSetupModal?.();
+                  handleAuth();
                   setIsMobileMenuOpen(false);
                 }}
                 className="w-full py-3 px-4 text-xs font-bold border border-dashed rounded-xl transition flex items-center justify-center gap-2 border-amber-500/40 text-amber-500 bg-amber-500/5 cursor-pointer"
               >
-                <Cloud className="w-4 h-4" /> Enable Cloud Storage
+                Sign up
               </button>
             ) : supabaseUser ? (
               <button
@@ -413,7 +413,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }}
                 className="w-full py-3 px-4 text-xs font-bold bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Cloud className="w-4 h-4" /> Cloud Login
+                Login
               </button>
             )}
           </motion.div>
