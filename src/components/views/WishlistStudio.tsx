@@ -891,14 +891,14 @@ export const WishlistStudio: React.FC<WishlistStudioProps> = ({
 
       {/* FULL SCREEN COUNTDOWN OVERLAY */}
       {isFullScreenCountdown && (
-        <div className="fixed inset-0 z-[100] flex flex-col justify-between p-4 sm:p-12 bg-gradient-to-br from-slate-950 via-pink-950 to-purple-950 text-white overflow-y-auto animate-in fade-in duration-300">
+        <div className="fixed inset-0 z-[100] flex flex-col justify-between p-2 sm:p-4 bg-gradient-to-br from-slate-950 via-pink-950 to-purple-950 text-white overflow-y-auto animate-in fade-in duration-300">
           {/* Ambient Background Glows */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-pink-500/20 blur-[120px] pointer-events-none" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-purple-500/20 blur-[120px] pointer-events-none" />
 
           {/* Top Header Navigation */}
           <div className="relative z-10 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3.5">
+            <div className="flex flex-row items-center gap-3.5">
               <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-2xl overflow-hidden shrink-0 shadow-lg">
                 {isImageUrl(userProfile?.avatarUrl) ? (
                   <img
@@ -910,20 +910,21 @@ export const WishlistStudio: React.FC<WishlistStudioProps> = ({
                   userProfile?.avatarUrl || '🎂'
                 )}
               </div>
-              <div>
-                <h2 className="text-lg font-black tracking-tight">{userProfile?.fullName || 'My Birthday'}</h2>
-                <p className="text-xs font-mono opacity-70">@{userProfile?.username || 'username'}</p>
-                  <div className="flex items-center gap-3">
-              {getZodiacSign(userProfile?.dateOfBirth) && (() => {
-                const z = getZodiacSign(userProfile!.dateOfBirth)!;
-                return (
-                  <span className="px-4 py-2 rounded-full bg-amber-400/20 backdrop-blur-xl border border-amber-300/30 text-xs sm:text-sm font-bold flex items-center gap-1.5 text-amber-200 shadow-md">
-                    ✨ {z.name} ({z.symbol})
-                  </span>
-                );
-              })()}
-            </div>
-              </div>
+                <div>
+                 <h2 className="text-lg font-black tracking-tight">{userProfile?.fullName || 'My Birthday'}</h2>
+                  <p className="text-xs font-mono opacity-70">@{userProfile?.username || 'username'}</p>
+                  
+                </div>
+                <div className="flex items-center gap-3">
+                    {getZodiacSign(userProfile?.dateOfBirth) && (() => {
+                      const z = getZodiacSign(userProfile!.dateOfBirth)!;
+                      return (
+                        <span className="px-4 py-2 rounded-full bg-amber-400/20 backdrop-blur-xl border border-amber-300/30 text-xs sm:text-sm font-bold flex items-center gap-1.5 text-amber-200 shadow-md">
+                          ✨ {z.name} ({z.symbol})
+                        </span>
+                      );
+                    })()}
+                  </div>
              
             </div>
 
@@ -936,7 +937,7 @@ export const WishlistStudio: React.FC<WishlistStudioProps> = ({
           </div>
 
           {/* Center Main Countdown Display */}
-          <div className="relative z-10 flex flex-col items-center justify-center text-center my-auto py-4">
+          <div className="relative z-10 flex flex-col items-center justify-center text-center my-auto ">
             {userProfile?.dateOfBirth ? (() => {
               try {
                 const countdown = getBirthdayCountdown(
@@ -1015,19 +1016,19 @@ export const WishlistStudio: React.FC<WishlistStudioProps> = ({
 
                       {/* Live Ticking Breakdown: Hours, Minutes, Seconds */}
                       <div className="grid grid-cols-3 gap-3 sm:gap-6 max-w-xl w-full mx-auto pt-4">
-                        <div className="p-4 sm:p-6 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
+                        <div className="p-2 sm:p-4 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
                           <span className="text-5xl sm:text-8xl font-black font-mono text-amber-300 drop-shadow">
                             {String(diffHours).padStart(2, '0')}
                           </span>
                           <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider opacity-70 mt-1">Hours</p>
                         </div>
-                        <div className="p-4 sm:p-6 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
+                        <div className="p-2 sm:p-4 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
                           <span className="text-5xl sm:text-8xl font-black font-mono text-indigo-300 drop-shadow">
                             {String(diffMinutes).padStart(2, '0')}
                           </span>
                           <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider opacity-70 mt-1">Minutes</p>
                         </div>
-                        <div className="p-4 sm:p-6 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
+                        <div className="p-2 sm:p-4 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
                           <span className="text-5xl sm:text-8xl font-black font-mono text-emerald-300 drop-shadow">
                             {String(diffSeconds).padStart(2, '0')}
                           </span>
@@ -1097,19 +1098,19 @@ export const WishlistStudio: React.FC<WishlistStudioProps> = ({
 
                     {/* Live Ticking Breakdown: Hours, Minutes, Seconds */}
                     <div className="grid grid-cols-3 gap-3 sm:gap-6 max-w-xl mx-auto pt-4">
-                      <div className="p-4 sm:p-6 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
+                      <div className="p-2 sm:p-4 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
                         <span className="text-6xl sm:text-9xl font-black font-mono text-amber-300">
                           {String(diffHours).padStart(2, '0')}
                         </span>
                         <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider opacity-70 mt-1">Hours</p>
                       </div>
-                      <div className="p-4 sm:p-6 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
+                      <div className="p-2 sm:p-4 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
                         <span className="text-6xl sm:text-9xl font-black font-mono text-indigo-300">
                           {String(diffMinutes).padStart(2, '0')}
                         </span>
                         <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider opacity-70 mt-1">Minutes</p>
                       </div>
-                      <div className="p-4 sm:p-6 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
+                      <div className="p-2 sm:p-4 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/15 text-center shadow-xl">
                         <span className="text-6xl sm:text-9xl font-black font-mono text-emerald-300">
                           {String(diffSeconds).padStart(2, '0')}
                         </span>
@@ -1131,7 +1132,7 @@ export const WishlistStudio: React.FC<WishlistStudioProps> = ({
           </div>
 
           {/* Bottom Footer Bar */}
-          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/15 pt-6">
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/15 pt-2 ">
             <div className="flex items-center gap-3">
               <h3 className="text-2xl sm:text-3xl font-black font-mono text-white drop-shadow">
                 {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}
