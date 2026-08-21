@@ -3,8 +3,11 @@ import { compressImage } from '../utils/helpers';
 
 const meta = import.meta as any;
 const win = typeof window !== 'undefined' ? (window as any) : {};
-const rawUrl = meta.env?.VITE_SUPABASE_URL || win.__SUPABASE_URL__ || '';
-const rawKey = meta.env?.VITE_SUPABASE_ANON_KEY || win.__SUPABASE_ANON_KEY__ || '';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+console.log('Supabase URL configured:ok', !!supabaseUrl);
+console.log('Supabase key configured:ok', !!supabaseAnonKey);
 
 const isValidUrl = (url: string): boolean => {
   if (!url || typeof url !== 'string') return false;
@@ -15,10 +18,12 @@ const isValidUrl = (url: string): boolean => {
   } catch {
     return false;
   }
-};
+}; 
 
-const supabaseUrl = isValidUrl(rawUrl) ? rawUrl : null;
-const supabaseAnonKey = rawKey && rawKey !== 'your_supabase_anon_key' ? rawKey : null;
+console.log('Supabase URL configured:okay', !!supabaseUrl);
+console.log('Supabase key configured:okay', !!supabaseAnonKey);
+
+
 
 // Only initialize if valid environment variables are provided to avoid runtime crashes
 export const supabase = supabaseUrl && supabaseAnonKey
