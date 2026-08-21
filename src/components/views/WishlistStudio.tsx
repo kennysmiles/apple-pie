@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { Friend, ThemeStyle, UserProfile, Wishlist } from '../../types';
 import { AVATAR_PRESETS } from '../../constants/presets';
-import { getBirthMonth, getZodiacSign, compressImage, copyTextToClipboard, isImageUrl, resolveImageUrl } from '../../utils/helpers';
+import { getBirthMonth, getZodiacSign, compressImage, copyTextToClipboard, isImageUrl, resolveImageUrl,getBirthdayCountdown } from '../../utils/helpers';
 import { playMagicalBell, startBirthdaySong, stopBirthdaySong, toggleBirthdaySong, birthdayMusicBox, isBirthdaySongPlaying } from '../../utils/synth';
 import { isSupabaseConfigured, uploadImageToSupabase } from '../../lib/supabase';
 import { WishlistExportModal } from '../modals/WishlistExportModal';
@@ -319,15 +319,13 @@ export const WishlistStudio: React.FC<WishlistStudioProps> = ({
 
                   {userProfile?.dateOfBirth ? (() => {
                     try {
-                      const birthDate = new Date(userProfile.dateOfBirth);
-                      const today = new Date();
-                      const nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
-                      if (today.getTime() > nextBirthday.getTime() && today.toDateString() !== nextBirthday.toDateString()) {
-                        nextBirthday.setFullYear(today.getFullYear() + 1);
-                      }
-                      const diffTime = nextBirthday.getTime() - today.getTime();
-                      const diffDays = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
-                      const isToday = today.getDate() === birthDate.getDate() && today.getMonth() === birthDate.getMonth();
+                      const countdown = getBirthdayCountdown(
+                        userProfile.dateOfBirth,
+                        currentTime
+                      );
+                  
+                      const { diffDays, diffHours, diffMinutes, diffSeconds, isToday } =
+                        countdown;
 
                       if (isToday) {
                         return (
@@ -941,18 +939,13 @@ export const WishlistStudio: React.FC<WishlistStudioProps> = ({
           <div className="relative z-10 flex flex-col items-center justify-center text-center my-auto py-4">
             {userProfile?.dateOfBirth ? (() => {
               try {
-                const birthDate = new Date(userProfile.dateOfBirth);
-                const today = currentTime;
-                const nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate(), 0, 0, 0);
-                if (today.getTime() > nextBirthday.getTime() + 86400000) {
-                  nextBirthday.setFullYear(today.getFullYear() + 1);
-                }
-                const diffTime = Math.max(0, nextBirthday.getTime() - today.getTime());
-                const isToday = today.getDate() === birthDate.getDate() && today.getMonth() === birthDate.getMonth();
-                         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                const diffHours = Math.floor((diffTime / (1000 * 60 * 60)) % 24);
-                const diffMinutes = Math.floor((diffTime / (1000 * 60)) % 60);
-                const diffSeconds = Math.floor((diffTime / 1000) % 60);
+                const countdown = getBirthdayCountdown(
+                  userProfile.dateOfBirth,
+                  currentTime
+                );
+            
+                const { diffDays, diffHours, diffMinutes, diffSeconds, isToday } =
+                  countdown;
 
                 if (isToday) {
                   return (

@@ -5,6 +5,60 @@
  * Helper functions for image compression, date parsing, zodiac signs, and clipboard operations.
  */
 
+// Birthday countdown helper
+  export const getBirthdayCountdown = (
+    dateOfBirth: string,
+    currentTime: Date
+  ) => {
+    const birthDate = new Date(dateOfBirth);
+
+    const today = new Date(
+      currentTime.getFullYear(),
+      currentTime.getMonth(),
+      currentTime.getDate()
+    );
+
+    let nextBirthday = new Date(
+      currentTime.getFullYear(),
+      birthDate.getMonth(),
+      birthDate.getDate()
+    );
+
+    const isToday =
+      today.getMonth() === birthDate.getMonth() &&
+      today.getDate() === birthDate.getDate();
+
+    if (!isToday && nextBirthday < today) {
+      nextBirthday.setFullYear(currentTime.getFullYear() + 1);
+    }
+
+    const diffTime = nextBirthday.getTime() - currentTime.getTime();
+
+    const diffDays = Math.floor(
+      diffTime / (1000 * 60 * 60 * 24)
+    );
+
+    const diffHours = Math.floor(
+      (diffTime / (1000 * 60 * 60)) % 24
+    );
+
+    const diffMinutes = Math.floor(
+      (diffTime / (1000 * 60)) % 60
+    );
+
+    const diffSeconds = Math.floor(
+      (diffTime / 1000) % 60
+    );
+
+    return {
+      diffDays,
+      diffHours,
+      diffMinutes,
+      diffSeconds,
+      isToday,
+    };
+  };
+
 // Image downscaling / compression utility to fit in standard URL limits
 export const compressImage = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
